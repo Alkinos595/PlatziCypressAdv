@@ -4,12 +4,40 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open"
+    "test": "cypress open",
+    "snaptest": "cypress open --env updateSnapshots=true",
+    "variable-de-entorno": "cypress open --env VARIABLE_DE_ENTORNO=valor",
+    "variable-de-entorno-del-sistema-mac": "export NODE_ENV=VARIABLE_DE_DESARROLLO && cypress open",
+    "variable-de-entorno-del-sistema-windows": "SET NODE_ENV=VARIABLE_DE_DESARROLLO && cypress open",
+    "cucumber": "cypress run",
+    "cucumber:tags": "cypress run --env tags=@probando",
+    "delete:results": "rm -r cypress/results/* || true",
+    "report": "cypress run --reporter cypress-multi-reporters --reporter-options configFile=reporter-config.json",
+    "mochawesome:report": "npx mochawesome-merge \"cypress/results/mochawesome/*.json\" > mochawesome.json && npx marge mochawesome.json",
+    "junit:reports": "jrm cypress/results/junit/combined-report.xml \"cypress/results/junit/*.xml\"",
+    "allure:report": "cypress run --env allure=true",
+    "allure:serve": "allure serve allure-results",
+    "run:dashboard": "npx cypress run --record --key INSERT-KEY"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^12.17.1"
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.2",
+    "@cypress/webpack-preprocessor": "^5.17.1",
+    "cypress": "^12.17.1",
+    "cypress-multi-reporters": "^1.6.3",
+    "junit-report-merger": "^6.0.2",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@shelex/cypress-allure-plugin": "^2.40.0",
+    "@testing-library/cypress": "^9.0.0",
+    "babel-loader": "^9.1.3",
+    "cypress-xpath": "^2.0.1",
+    "webpack": "^5.88.2"
   }
 }

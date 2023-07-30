@@ -149,7 +149,8 @@ dist
 
 
 # Others
-
+mochawesome-report
+cypress/snapshots/*
 
 
 # SvelteKit build / generate output
